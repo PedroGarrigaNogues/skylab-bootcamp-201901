@@ -14,7 +14,10 @@ function borer(callback) {
                     callback(a)
                 }
             })
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop
         }
     })
 }
