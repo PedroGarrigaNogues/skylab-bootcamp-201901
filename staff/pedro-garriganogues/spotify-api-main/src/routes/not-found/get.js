@@ -1,6 +1,7 @@
 
 module.exports = (req, res) =>
     res.status(404).send(
+        console.log(404)
         //         renderPage(`<section class="not-found">
         // <h2>NOT FOUND</h2>
 

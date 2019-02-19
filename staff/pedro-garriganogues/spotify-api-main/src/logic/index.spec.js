@@ -171,10 +171,10 @@ describe('logic', () => {
         )
 
         it('should succeed on correct credentials', () =>
-            logic.logInUser(email, password)
-                .then(() => {
-                    expect(logic.__userId__).toBeDefined()
-                    expect(logic.__userApiToken__).toBeDefined()
+            logic.authenticateUser(email, password)
+                .then((res) => {
+                    expect(res).toBeDefined()
+
                 })
         )
     })
@@ -191,7 +191,7 @@ describe('logic', () => {
         )
 
         it('should succeed on correct credentials', () =>
-            logic.logInUser(email, password)
+            logic.authenticateUser(email, password)
                 .then(() => expect(logic.isUserLoggedIn).toBeTruthy())
         )
     })
@@ -205,7 +205,7 @@ describe('logic', () => {
 
         beforeEach(() =>
             logic.registerUser(name, surname, email, password, passwordConfirm)
-                .then(() => logic.logInUser(email, password))
+                .then(() => logic.authenticateUser(email, password))
         )
 
         it('should succeed on correct credentials', () => {
@@ -225,7 +225,7 @@ describe('logic', () => {
 
         beforeEach(() =>
             logic.registerUser(name, surname, email, password, passwordConfirm)
-                .then(() => logic.logInUser(email, password))
+                .then(() => logic.authenticateUser(email, password))
         )
 
         it('should succeed on correct credentials', () =>
@@ -290,7 +290,7 @@ describe('logic', () => {
 
         beforeEach(() =>
             logic.registerUser(name, surname, email, password, passwordConfirm)
-                .then(() => logic.logInUser(email, password))
+                .then(() => logic.authenticateUser(email, password))
         )
 
         it('should succeed on correct data', () =>
@@ -368,7 +368,7 @@ describe('logic', () => {
 
         beforeEach(() =>
             logic.registerUser(name, surname, email, password, passwordConfirm)
-                .then(() => logic.logInUser(email, password))
+                .then(() => logic.authenticateUser(email, password))
         )
 
         it('should succeed on correct data', () =>
@@ -451,7 +451,7 @@ describe('logic', () => {
 
         beforeEach(() =>
             logic.registerUser(name, surname, email, password, passwordConfirm)
-                .then(() => logic.logInUser(email, password))
+                .then(() => logic.authenticateUser(email, password))
         )
 
         it('should succeed on correct data', () =>
