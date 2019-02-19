@@ -13,12 +13,12 @@ const app = express()
 
 const jsonBodyParser = bodyParser.json()
 
-// app.post('/register', formBodyParser, register.post)
+app.post('/register', jsonBodyParser, register.post)
 
 app.post('/authenticate', jsonBodyParser, authenticate.post)
 
-// app.get('/retrieve', retrieve.get)
+app.get('/retrieve', retrieve.get)
 
-// app.get('*', notFound.get)
+app.get('*', notFound.get)
 
 app.listen(port, () => console.log(`server running on port ${port}`))

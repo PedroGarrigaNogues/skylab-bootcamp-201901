@@ -1,5 +1,4 @@
 const logicFactory = require('../../logic-factory')
-const { renderPage, pullFeedback } = require('../helpers')
 
 module.exports = (req, res) => {
     try {
@@ -9,24 +8,17 @@ module.exports = (req, res) => {
 
         if (logic.isUserLoggedIn)
             logic.retrieveUser()
-                .then(user => res.send(renderPage(`<section class="home">
-        Welcome, ${user.name}!
-        ${feedback ? `<section class="feedback feedback--error">
-            ${feedback}
-        </section>` : ''}
-        <form action="/logout" method="post">
-            <button type="submit">Logout</button>
-        </form>
-    </section>`)))
+                .then(() => res.send('successfully retieved'))
                 .catch(({ message }) => {
-                    req.session.feedback = message
-
-                    res.redirect('/home')
+                    res.status(404).json({
+                        error: message
+                    })
                 })
         else res.redirect('/login')
     } catch ({ message }) {
-        req.session.feedback = message
+        res.status(404).json({
+            error: message
+        })
 
-        res.redirect('/home')
     }
 }
