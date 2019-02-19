@@ -3,8 +3,6 @@ const logic = require('../../logic')
 module.exports = (req, res) => {
     const { body: { email, password } } = req
 
-    debugger
-
     try {
         logic.authenticateUser(email, password)
             // .then(res => res.json(res))
