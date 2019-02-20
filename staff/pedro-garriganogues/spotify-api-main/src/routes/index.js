@@ -1,17 +1,21 @@
 module.exports = {
-    register: {
-        post: require('./register/post')
-    },
+    registerUser: require('./register-user'),
 
-    authenticate: {
-        post: require('./authenticate/post')
-    },
+    authenticateUser: require('./authenticate-user'),
 
-    retrieve: {
-        get: require('./retrieve/get')
-    },
+    retrieveUser: require('./retrieve-user'),
 
-    notFound: {
-        get: require('./not-found/get')
-    }
+    searchArtists: require('./search-artists'),
+
+    // TODO other route handlers
+
+    notFound: require('./not-found')
+
+    // router.get('/artist/:id', retrieveArtist)
+
+    // router.get('/album/:id', retrieveAlbum)
+
+    // router.get('/track/:id', retrieveTrack)
+
+    // app.get('*', notFound)
 }
