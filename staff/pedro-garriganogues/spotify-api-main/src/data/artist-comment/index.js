@@ -47,13 +47,30 @@ const artistComment = {
 
         return readFile(filePath, 'utf8')
             .then(content => JSON.parse(content))
+            .then(content => content.filter(comment => (comment.userId.includes(query.userId) || comment.id.includes(query.id) || comment.id.includes(query.id) || comment.text.includes(query.text) || comment.id.includes(query.id) || comment.date.includes(query.date) || comment.artistId.includes(query.artistId))))
+
+    },
 
 
-            .then(content => content.filter(comment => (comment.artistId.includes(query[key]) || comment.id.includes(query[key]))))
-
+    delete(id) {
+        return writeFile(filePath, 'utf8')
+            .then(content => JSON.parse(content))
+            .then(content => content.findIndex(comment => comment.id === id))
+            .then(content => content.slice(comment, 1))
     }
 }
 
+// .then(content => {
+//     const comments = JSON.parse(content)
+
+//     const index = comments.findIndex(comment => comment.id === id)
+
+//     if (index < 0) throw Error(`comment with id ${id} not found`)
+
+//     comments.splice(index, 1)
+
+//     return fsp.writeFile(file, JSON.stringify(comments, null, 4))
+// })
 
 
 module.exports = artistComment
