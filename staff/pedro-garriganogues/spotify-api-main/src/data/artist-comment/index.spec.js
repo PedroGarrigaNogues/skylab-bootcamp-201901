@@ -61,7 +61,7 @@ describe('artist comments data', () => {
 
             return artistComment.update(comment)
                 .then(() => artistComment.retrieve(comment.id))
-                .then(({ id, userId, text, date }) => {
+                .then(({ id, userId, text, date, artistId }) => {
                     expect(id).toBe(comment.id)
                     expect(artistId).toBe(comment.artistId)
                     expect(userId).toBe(comment.userId)
@@ -129,6 +129,8 @@ describe('artist comments data', () => {
         it('should succeed on correct criteria by id', () =>
             artistComment.find({ id: comment2.id })
                 .then(comments => {
+
+                    console.log('comments: ', comments);
                     expect(comments).toBeDefined()
                     expect(comments.length).toBe(1)
 
