@@ -2,6 +2,7 @@
 
 const spotifyApi = require('../spotify-api')
 const userApi = require('../user-api')
+const artistComment = require('../data/artist-comment')
 
 /**
  * Abstraction of business logic.
@@ -127,8 +128,24 @@ const logic = {
             })
     },
 
-    addCommentToArtist(userId, token, artistId, comment) {
-        // TODO use artistComment
+    addCommentToArtist(userId, token, artistId, text) {
+        // TODO validate userId, token, artistId and text
+
+        const comment = {
+            userId,
+            artistId,
+            text
+        }
+
+        return userApi.retrieve(userId, token)
+            .then(() => artistComment.add(comment))
+            .then(() => comment.id)
+    },
+
+    listCommentsFromArtist(artistId) {
+        // TODO artistId
+
+        return artistComment.find({ artistId })
     },
 
     /**

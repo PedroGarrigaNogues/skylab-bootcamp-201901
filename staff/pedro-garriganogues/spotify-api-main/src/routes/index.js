@@ -10,12 +10,4 @@ module.exports = {
     // TODO other route handlers
 
     notFound: require('./not-found')
-
-    // router.get('/artist/:id', retrieveArtist)
-
-    // router.get('/album/:id', retrieveAlbum)
-
-    // router.get('/track/:id', retrieveTrack)
-
-    // app.get('*', notFound)
 }
