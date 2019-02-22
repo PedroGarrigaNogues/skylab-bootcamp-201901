@@ -1,21 +1,37 @@
 const uuid = require('uuid/v4')
-const fsp = require('fs').promises // WARN need node v10+
+const fs = require('fs')
+const fsp = fs.promises // WARN need node v10+
 const path = require('path')
 
 const artistComment = {
     file: 'artist-comments.json',
 
     __load__(file) {
-        return fsp.readFile(file)
-            .then(content => JSON.parse(content))
+        // return fsp.readFile(file)
+        //     .then(content => JSON.parse(content))
+        return new Promise((resolve, reject) => {
+            fs.readFile(file, (error, content) => {
+                if (error) return reject(error)
+
+                resolve(JSON.parse(content))
+            })
+        })
     },
 
     __save__(file, comments) {
-        return fsp.writeFile(file, JSON.stringify(comments, null, 4))
+        // return fsp.writeFile(file, JSON.stringify(comments, null, 4))
+        return new Promise((resolve, reject) => {
+            fs.writeFile(file, JSON.stringify(comments, null, 4), error => {
+                if (error) return reject(error)
+
+                resolve()
+            })
+        })
     },
 
     add(comment) {
-        // TODO validate comment (should all field values and types)
+
+        if (typeof comment !== 'object') throw TypeError(`${comment} is not a object`)
 
         const file = path.join(__dirname, this.file)
 
@@ -30,7 +46,10 @@ const artistComment = {
     },
 
     retrieve(id) {
-        // TODO validate id
+
+        if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
+
+        if (!id.trim().length) throw Error('id is empty')
 
         const file = path.join(__dirname, this.file)
 
@@ -47,8 +66,9 @@ const artistComment = {
     },
 
     update(comment) {
-        // TODO validate comment (should all field values and types)
-        
+
+        if (comment.constructor !== Object) throw TypeError(`${comment} is not an object`)
+
         const file = path.join(__dirname, this.file)
 
         return this.__load__(file)
@@ -64,7 +84,9 @@ const artistComment = {
     },
 
     remove(id) {
-        // TODO validate id
+
+        if (typeof id !== 'string') throw TypeError(`${id} is not a string`)
+        if (!id.trim().length) throw Error('id is empty')
 
         const file = path.join(__dirname, this.file)
 
@@ -82,12 +104,14 @@ const artistComment = {
 
     removeAll() {
         const file = path.join(__dirname, this.file)
-        
+
         return this.__save__(file, [])
     },
 
     find(criteria) {
-        // TODO validate criteria
+
+        // if (typeof criteria !== 'string') throw TypeError(`${criteria} is not a string`)
+        // if (!criteria.trim().length) throw Error('criteria is empty')
 
         const file = path.join(__dirname, this.file)
 
