@@ -23,10 +23,10 @@ describe('user', () => {
 
     describe('add', () => {
         const _user = {
-            name: 'Tachi',
-            surname: 'Melodin',
-            email: 'tachito',
-            password: 'meguhtalagasssolina'
+            username: "user2",
+            surname: "user2",
+            email: "user2@user2.com",
+            password: "123"
         }
 
         it('should succeed on correct data', () =>
@@ -45,6 +45,61 @@ describe('user', () => {
                 })
         )
     })
+
+    describe('retrieve', () => {
+        const _user = {
+            username: "user2",
+            surname: "user2",
+            email: "user2@user2.com",
+            password: "123"
+        }
+
+        beforeEach(() => users.add(_user))
+
+        it('should succeed on correct data', () =>
+            users.retrieve(_user.email)
+                .then(({ email }) => {
+
+                    expect(email).to.equal(_user.email)
+
+                })
+        )
+
+        it('should null on non matching email', () =>
+            users.retrieve('is@nulll.com')
+                .then(user => expect(user).to.be.null)
+        )
+
+
+    })
+
+    // describe('remove', () => {
+    //     const _user = {
+    //         username: "user2",
+    //         surname: "user2",
+    //         email: "user2@user2.com",
+    //         password: "123"
+    //     }
+
+    //     beforeEach(() => users.add(_user))
+
+    //     it('should succeed on correct data', () =>
+    //         users.removeUser(_user.email)
+    //             .then(({ email }) => {
+
+    //                 expect(email).to.equal(_user.email)
+
+    //             })
+    //     )
+
+    // it('should null on non matching email', () =>
+    //     users.retrieve('is@nulll.com')
+    //         .then(user => expect(user).to.be.null)
+    // )
+
+
+    // })
+
 
     after(() =>
         users.collection.deleteMany()

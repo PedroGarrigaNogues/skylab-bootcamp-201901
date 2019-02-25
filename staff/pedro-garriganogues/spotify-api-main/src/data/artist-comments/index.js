@@ -110,9 +110,6 @@ const artistComment = {
 
     find(criteria) {
 
-        // if (typeof criteria !== 'string') throw TypeError(`${criteria} is not a string`)
-        // if (!criteria.trim().length) throw Error('criteria is empty')
-
         const file = path.join(__dirname, this.file)
 
         return this.__load__(file)
