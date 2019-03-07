@@ -14,7 +14,7 @@ import Footer from '../Footer'
 import Profile from '../Profile'
 import Cart from '../Cart'
 import Product from '../Product'
-import AllProducts from '../Allproducts'
+import Totalproducts from '../Totalproducts'
 
 
 
@@ -60,7 +60,7 @@ class App extends Component {
             {/* <Route exact path="/products" component={Products} /> */}
             <Route exact path="/profile" component={Profile} />
 
-            <Route exact path="/products" render={props => <AllProducts categoryId={props.match.params.id} />} />
+            <Route exact path="/products" render={props => <Totalproducts categoryId={props.match.params.id} />} />
             <Route exact path="/product/:id" render={props => <Product productId={props.match.params.id} />} />
 
             <Route exact path="/cart" component={Cart} />

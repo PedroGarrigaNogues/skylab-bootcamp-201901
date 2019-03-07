@@ -53,7 +53,6 @@ router.get('/users/:userId', jwtValidator, (req, res) => {
             res.status(400)
             res.json({ status: 'KO', error: message })
         })
-
 })
 
 // router.patch('/users/:userId', [jwtValidator, jsonBodyParser], (req, res) => {
@@ -87,7 +86,7 @@ router.get('/users/:userId', jwtValidator, (req, res) => {
 router.get('/categories/:id', (req, res) => {
     const { params: { id } } = req
 
-    return logic.listProducts(id) // TODO rename to listProductsByCategory
+    return logic.listProducts(id)
         .then(products => {
             res.status(200)
             res.json({ status: 'OK', data: products })
@@ -111,11 +110,13 @@ router.get('/categories/products/:productId', (req, res) => {
             res.status(400)
             res.json({ status: 'KO', error: message })
         })
-
 })
 
 router.get('/products', (req, res) => {
     const { query: { ids } } = req
+
+
+
     if (!ids)
         logic.listAllProducts()
             .then(products => {
@@ -127,7 +128,7 @@ router.get('/products', (req, res) => {
                 res.json({ status: 'KO', error: message })
             })
     else
-        return logic.listProductsByIds(ids) // TODOs
+        return logic.listProductsByIds(ids)
             .then(products => {
                 res.status(200)
                 res.json({ status: 'OK', data: products })

@@ -3,10 +3,9 @@
 require('dotenv').config()
 
 const express = require('express')
-const mongoose = require('mongoose')
 const router = require('./src/routes/index')
 const cors = require('cors')
-const { Product } = require('../cleanup-data/model')
+const { models: { Product }, mongoose } = require('cleanup-data')
 
 const { env: { PORT, DB_URL } } = process
 

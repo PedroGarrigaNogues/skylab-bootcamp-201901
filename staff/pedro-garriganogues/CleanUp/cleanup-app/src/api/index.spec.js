@@ -30,7 +30,6 @@ describe('music api', () => {
         it('should succeed on valid data', async () => {
             const id = await cleanUpApi.registerUser(name, surname, email, password, passwordConfirmation)
 
-            debugger
 
             expect(id).toBeDefined()
             expect(typeof id).toBe('string')

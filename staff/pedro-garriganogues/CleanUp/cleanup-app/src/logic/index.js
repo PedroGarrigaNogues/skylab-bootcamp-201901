@@ -58,6 +58,7 @@ const logic = {
 
 
     listAllProducts() {
+
         return cleanUpApi.listAllProducts()
             .then(products => products)
     },

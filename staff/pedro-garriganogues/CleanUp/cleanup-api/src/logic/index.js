@@ -1,6 +1,6 @@
 'use strict'
 
-const { User, Product } = require('../../../cleanup-data/model')
+const { models: { User, Product } } = require('cleanup-data')
 
 const logic = {
 
@@ -118,8 +118,8 @@ const logic = {
     async listAllProducts() {
 
 
+
         const products = await Product.find({})
-        console.log(products + 'products');
 
         if (!products) throw Error(`no products found`)
 

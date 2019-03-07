@@ -4,7 +4,7 @@ import logic from '../../logic'
 import './index.css'
 import Indexitems from './../Indexitems'
 
-class AllProducts extends Component {
+class Totalproducts extends Component {
 
     constructor() {
         super()
@@ -14,6 +14,7 @@ class AllProducts extends Component {
     }
 
     componentDidMount() {
+
         logic.listAllProducts()
             .then(products => this.setState({ products }))
     }
@@ -36,4 +37,4 @@ class AllProducts extends Component {
 
 }
 
-export default AllProducts
+export default Totalproducts
